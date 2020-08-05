@@ -68,7 +68,6 @@ export function moviesActions(){
             // clienteAxios.get('https://serene-scrubland-47940.herokuapp.com/productos')
             clienteAxios.get('http://www.omdbapi.com/?apikey=32395055&type=movie&s=bad')
             .then(response => {
-                console.log(response,'response')
                 dispatch( onSuccess(response.data) )
             })
             .catch(error => {
@@ -101,7 +100,7 @@ export function addToMyListAction(id,status) {
 
         // Eliminar desde la API
         
-        clienteAxios.post(`http://127.0.0.1:3333/api/v1/add-to-list`,{
+        clienteAxios.post(`https://adonis-server-public-api.herokuapp.com/api/v1/add-to-list`,{
             imdbId:id,
             status:status
         })
@@ -138,7 +137,7 @@ export function myListActions(){
 
         dispatch( obtainMyList() )
             // clienteAxios.get('https://serene-scrubland-47940.herokuapp.com/productos')
-            clienteAxios.get('http://127.0.0.1:3333/api/v1/fetch-list')
+            clienteAxios.get('https://adonis-server-public-api.herokuapp.com/api/v1/fetch-list')
             .then(response => {
                 console.log(response,'response')
                 dispatch( onSuccessMyList(response.data) )
@@ -171,7 +170,7 @@ export function removeToMyListAction(id,status) {
 
         // Eliminar desde la API
         
-        clienteAxios.post(`http://127.0.0.1:3333/api/v1/delete-my-list`,{
+        clienteAxios.post(`https://adonis-server-public-api.herokuapp.com/api/v1/delete-my-list`,{
             imdbId:id,
             status:status
         })

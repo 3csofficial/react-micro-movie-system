@@ -99,7 +99,9 @@ const EnhancedTableToolbar = (props) => {
                 return obj.imdbID;
               })
     dispatch( addToMyListAction(filtered,status) )
-    window.location.reload();
+    setTimeout(function(){
+      window.location.reload();
+    },2000);
   }
 
   const removeToMyList = (selectedNames,status) => {
@@ -113,7 +115,9 @@ const EnhancedTableToolbar = (props) => {
                 return obj.imdbID;
               })
     dispatch( removeToMyListAction(filtered,status) )
-    window.location.reload();
+    setTimeout(function(){
+      window.location.reload();
+    },2000);
   }
 
   return (

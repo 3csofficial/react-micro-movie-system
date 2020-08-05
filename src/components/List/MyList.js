@@ -17,13 +17,18 @@ const headCells = [
 
 function filtering(origMovies,myList,state) {  
     let filtered = '';
+    console.log(myList,'myList');
     const list = (state.checkedA) ? myList.addtomylist : myList.addtomywatchlist;
-    filtered = origMovies.filter(function(o1){
-        return list.some(function(o2){
-            return o1.imdbID == o2.imdbId;  
+    if(list){
+        filtered = origMovies.filter(function(o1){
+            return list.some(function(o2){
+                return o1.imdbID == o2.imdbId;  
+            });
         });
-    });
-    return filtered;
+        return filtered;
+    }else{
+        return [];
+    }
 }
 
 const MyList = () => {
@@ -62,8 +67,7 @@ const MyList = () => {
                 onChange={handleChange}
                 name="checkedA"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
-            />
-            {error ? <div className="font-weight-bold alert alert-danger text-center mt-5">There was a mistake</div> : null }            
+            />         
             {(moviesCollection.length==0 && movies.Response=="False") ? <div className="font-weight-bold alert alert-danger text-center mt-5">{movies.Error}</div> : null }            
                 <h2 className="text-center my-5">{state.checkedA ? 'ADD TO MY LIST' : 'ADD TO WATCH LIST'}</h2>
                     <MatTable

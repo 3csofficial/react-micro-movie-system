@@ -56,6 +56,7 @@ export default function(state = iniatialState, action){
                 loading: false,
                 producto: {}
             }
+            
         case MYLISTING_REQUESTING:
             return {
                 ...state,
