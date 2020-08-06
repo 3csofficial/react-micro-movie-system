@@ -15,7 +15,6 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
 import Checkbox from '@material-ui/core/Checkbox';
-import Switch from '@material-ui/core/Switch';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -33,10 +32,10 @@ function headRows(rows) {
 var globalState = '';
 
 function EnhancedTableHead(props) {
-  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
-  };
+  const {  onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  // const createSortHandler = (property) => (event) => {
+  //   onRequestSort(event, property);
+  // };
   return (
     <TableHead>
       <TableRow>
@@ -308,7 +307,7 @@ function EnhancedTable( rows ) {
               order={order}
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
+              // onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
             <TableBody>

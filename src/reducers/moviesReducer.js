@@ -1,26 +1,17 @@
-// Acciones
+// Actions
 import {
-    AGREGAR_PRODUCTOS,
-    AGREGAR_PRODUCTOS_EXITO,
-    AGREGAR_PRODUCTOS_ERROR,
-    COMENZAR_DESCARGA_PRODUCTOS,
-    DESCARGA_PRODUCTOS_EXITOSA,
-    DESCARGA_PRODUCTOS_ERROR,
-    OBTENER_PRODUCTO_ELIMINAR,
-    PRODUCTO_ELIMINADO_EXITO,
-    PRODUCTO_ELIMINADO_ERROR,
-    OBTENER_PRODUCTO_EDITAR,
-    PRODUCTO_EDITAR_EXITO,
-    PRODUCTO_EDITAR_ERROR,
-    COMENZAR_EDICION_PRODUCTOS,
-    PRODUCTO_EDITADO_EXITO,
-    PRODUCTO_EDITADO_ERROR,
+    MOVIES_REQUESTING,
+    MOVIES_SUCCESS,
+    MOVIES_ERROR,
+    ADD_TO_MY_LIST_REQUESTING,
+    ADD_TO_MY_LIST_SUCCESS,
+    ADD_TO_MY_LIST_ERROR,
     MYLISTING_REQUESTING,
     MYLISTING_SUCCESS,
     MYLISTING_ERROR
 } from '../types'
 
-// Cada reducer tiene su state inicial
+// initial state reducer
 const iniatialState = {
     mylist: [],
     movies: [],
@@ -29,18 +20,17 @@ const iniatialState = {
     producto: {}
 }
 
-// Funcion del Reducer
+// Function Reducer for application state changes
 export default function(state = iniatialState, action){
     switch (action.type) {
-        
-        
-        case COMENZAR_DESCARGA_PRODUCTOS:
+           
+        case MOVIES_REQUESTING:
             return {
                 ...state,
                 loading: true,
                 producto: {}
             }
-        case DESCARGA_PRODUCTOS_EXITOSA:
+        case MOVIES_SUCCESS:
             return {
                 ...state,
                 movies: action.payload,
@@ -48,7 +38,7 @@ export default function(state = iniatialState, action){
                 error: false,
                 producto: {}
             } 
-        case DESCARGA_PRODUCTOS_ERROR: 
+        case MOVIES_ERROR: 
             return {
                 ...state,
                 movies: [],
@@ -56,6 +46,7 @@ export default function(state = iniatialState, action){
                 loading: false,
                 producto: {}
             }
+
             
         case MYLISTING_REQUESTING:
             return {
@@ -80,26 +71,22 @@ export default function(state = iniatialState, action){
                 producto: {}
             }
 
-        case OBTENER_PRODUCTO_ELIMINAR:
+            
+
+        case ADD_TO_MY_LIST_REQUESTING:
             return {
                 ...state,
                 error: null
             }
-        case PRODUCTO_ELIMINADO_EXITO:
+        case ADD_TO_MY_LIST_SUCCESS:
             return {
                 ...state,
                 productos: state.productos.filter( producto => producto._id !== action.payload )
             }
-        case PRODUCTO_ELIMINADO_ERROR: 
+        case ADD_TO_MY_LIST_ERROR: 
             return {
                 ...state,
                 error: true
-            }
-
-        case OBTENER_PRODUCTO_EDITAR: 
-            return {
-                ...state,
-                error: null
             }
         default:
             return state;
